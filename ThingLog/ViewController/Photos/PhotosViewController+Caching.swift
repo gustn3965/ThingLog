@@ -39,6 +39,9 @@ extension PhotosViewController {
             .flatMap { rect in collectionView.indexPathsForElements(in: rect) }
             .filter { indexPath in indexPath.item == 0 }
             .map { indexPath in assets.object(at: indexPath.item) }
+        
+        print("\n", addedAssets.count, addedRects, "캐싱할 Asset")
+        print(removedAssets.count, removedRects, "삭제할 Asset")
 
         // PHCachingImageManager가 캐싱한 자산을 업데이트
         imageManager.startCachingImages(for: addedAssets,

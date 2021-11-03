@@ -36,14 +36,16 @@ extension PhotosViewController: UICollectionViewDataSource {
 
         cell.representedAssetIdentifier = asset.localIdentifier
 
-        imageManager.requestImage(for: asset,
-                                  targetSize: thumbnailSize,
-                                  contentMode: .aspectFill,
-                                  options: nil) { image, _ in
+        cell.imageId = imageManager.requestImage(for: asset,
+                                                 targetSize: thumbnailSize,
+                                                 contentMode: .aspectFill,
+                                                 options: nil) { image, _ in
             if cell.representedAssetIdentifier == asset.localIdentifier {
                 cell.update(image: image)
             }
         }
+        
+        
 
         cell.checkButton.rx.tap
             .bind { [weak self] in
